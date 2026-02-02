@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://ch256pmtstlsy"]
+
+[ext_resource type="Texture2D" uid="uid://dkyogx1vd733s" path="res://src/mobs/jellyfish/jellyfish.png" id="1_8r1td"]
+[ext_resource type="Script" uid="uid://0uijsjhvnwrk" path="res://src/mobs/jellyfish/jellyfish.gd" id="1_hlnd3"]
+[ext_resource type="Script" uid="uid://b38sn5c4l06dy" path="res://src/state_machine/state_machine.gd" id="3_kp2ry"]
+[ext_resource type="Script" uid="uid://dk3tavqyumift" path="res://src/state_machine/state.gd" id="4_emwig"]
+[ext_resource type="Script" uid="uid://b6bbt5culsnfs" path="res://src/mobs/jellyfish/wandering_state.gd" id="4_wa3nv"]
+
+[sub_resource type="Animation" id="Animation_8r1td"]
+resource_name = "Normal"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/Wandering")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"push"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hlnd3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hlnd3"]
+_data = {
+&"Normal": SubResource("Animation_8r1td"),
+&"RESET": SubResource("Animation_hlnd3")
+}
+
+[node name="Jellyfish" type="CharacterBody2D" unique_id=230312259]
+script = ExtResource("1_hlnd3")
+partrol_speed = 30.0
+patrol_positions = Array[Vector2]([Vector2(15.58, 0), Vector2(-22.945, 0), Vector2(500, 500)])
+patrol_acc = 60.0
+patrol_decel = 6.0
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=302375114]
+texture = ExtResource("1_8r1td")
+hframes = 5
+
+[node name="Anim" type="AnimationPlayer" parent="." unique_id=14852732]
+libraries/ = SubResource("AnimationLibrary_hlnd3")
+autoplay = &"Normal"
+
+[node name="StateMachine" type="Node" parent="." unique_id=1622306364 node_paths=PackedStringArray("target_node", "default_state")]
+script = ExtResource("3_kp2ry")
+target_node = NodePath("..")
+default_state = NodePath("Wandering")
+metadata/_custom_type_script = "uid://b38sn5c4l06dy"
+
+[node name="Wandering" type="Node" parent="StateMachine" unique_id=1177256711]
+script = ExtResource("4_wa3nv")
+metadata/_custom_type_script = "uid://dk3tavqyumift"
+
+[node name="WaitingTimer" type="Timer" parent="StateMachine/Wandering" unique_id=270607597]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="ChasingPlayer" type="Node" parent="StateMachine" unique_id=2053731055]
+script = ExtResource("4_emwig")
+metadata/_custom_type_script = "uid://dk3tavqyumift"
