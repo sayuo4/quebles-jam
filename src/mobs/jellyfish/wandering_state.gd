@@ -22,52 +22,29 @@ func _enter(_previous_state: State) -> void:
 
 func _physics_update(_delta: float) -> void:
 	if !%WaitingTimer.is_stopped():
-		decelearte()
+		target_node.decelerate()
+		return
+	
+	if target_node.is_player_in_vision_range():
+		switch_to(&"ChasingPlayer")
 		return
 	
 	if target_node.arrived_at_point(target_point):
 		%WaitingTimer.start()
 	
 	
+	
 	target_node.rotation = lerp_angle(target_node.rotation, get_direction_to_target().angle() + deg_to_rad(90.0), 0.1)
-	accelerate(get_direction_to_target() * get_speed())
+	target_node.accelerate(get_direction_to_target() * get_speed())
 
 
-## accelerates towards [param towards]
-func accelerate(towards: Vector2) -> void:
-	target_node.velocity = target_node.velocity.move_toward(
-		towards + added_velocity,
-		get_acc()
-	)
-	added_velocity = added_velocity.lerp(Vector2.ZERO, 0.1)
-	target_node.move_and_slide()
 
-## accelerates towards [param towards]
-func decelearte() -> void:
-	target_node.velocity = target_node.velocity.move_toward(
-		Vector2.ZERO,
-		get_decel()
-	)
-	added_velocity = added_velocity.lerp(Vector2.ZERO, 0.1)
-	target_node.move_and_slide()
-
-
-## called by the animaiton player to give the jelly a push in the animation.
-func push() -> void:
-	added_velocity += target_node.velocity.normalized() * 100.0
 
 
 ## gets the speed of the wandering.
 func get_speed() -> float:
 	return (target_node as Jellyfish).partrol_speed
 
-## gets the acceleration of the wandering.
-func get_acc() -> float:
-	return (target_node as Jellyfish).patrol_acc
-
-## gets the deceleration of the wandering.
-func get_decel() -> float:
-	return (target_node as Jellyfish).patrol_decel
 
 func get_direction_to_target() -> Vector2:
 	return target_node.global_position.direction_to(target_point)
