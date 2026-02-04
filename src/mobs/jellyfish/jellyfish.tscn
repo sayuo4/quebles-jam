@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ch256pmtstlsy"]
 
-[ext_resource type="Texture2D" uid="uid://dkyogx1vd733s" path="res://src/mobs/jellyfish/jellyfish.png" id="1_8r1td"]
+[ext_resource type="Texture2D" uid="uid://dkyogx1vd733s" path="res://assets/mobs/jellyfish.png" id="1_8r1td"]
 [ext_resource type="Script" uid="uid://0uijsjhvnwrk" path="res://src/mobs/jellyfish/jellyfish.gd" id="1_hlnd3"]
 [ext_resource type="Script" uid="uid://b38sn5c4l06dy" path="res://src/state_machine/state_machine.gd" id="3_kp2ry"]
 [ext_resource type="Script" uid="uid://b6bbt5culsnfs" path="res://src/mobs/jellyfish/wandering_state.gd" id="4_wa3nv"]
