@@ -4,9 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://075kmh7unm0c" path="res://assets/player/player.png" id="2_rxibo"]
 [ext_resource type="Script" uid="uid://b38sn5c4l06dy" path="res://src/state_machine/state_machine.gd" id="3_mf2ua"]
 [ext_resource type="Script" uid="uid://kbjj8var5d3b" path="res://src/player/states/control_state.gd" id="4_244u8"]
+[ext_resource type="Shader" uid="uid://bfo1ha4cx12v6" path="res://src/player/shaders/player.gdshader" id="5_5f2sf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4anbu"]
 size = Vector2(5, 21)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jiejy"]
+shader = ExtResource("5_5f2sf")
 
 [node name="Player" type="CharacterBody2D" unique_id=1245037256 groups=["player"]]
 script = ExtResource("1_4anbu")
@@ -50,3 +54,21 @@ unique_name_in_owner = true
 process_callback = 0
 wait_time = 0.2
 one_shot = true
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=762654494]
+
+[node name="UnderwaterShader" type="ColorRect" parent="UI" unique_id=2080395515]
+material = SubResource("ShaderMaterial_jiejy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tint" type="ColorRect" parent="UI" unique_id=871433618]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.20784314, 1, 0.1254902)
