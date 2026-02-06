@@ -47,3 +47,7 @@ shape = SubResource("RectangleShape2D_cxdpd")
 
 [node name="Jellyfish" parent="." unique_id=230312259 instance=ExtResource("2_p3j32")]
 position = Vector2(123, 72)
+chasing_speed = null
+patrol_radius = null
+vision_radius = null
+patrol_arriving_distance = null
