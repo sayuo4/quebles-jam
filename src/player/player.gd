@@ -20,6 +20,13 @@ extends CharacterBody2D
 @onready var shape: Node2D = $Shape as Node2D
 @onready var boost_timer: Timer = %BoostTimer as Timer
 
+func _ready() -> void:
+	var hud: HUD = Global.get_hud()
+	
+	if hud:
+		hud.start_oxygen_timer()
+		hud.oxygen_finished.connect(_on_oxygen_finished)
+
 func get_input_dir() -> float:
 	return Input.get_axis("left", "right")
 
@@ -57,3 +64,7 @@ func round_values() -> void:
 func update_flip_h() -> void:
 	var margin: float = 0.1
 	shape.scale.x = 1.0 if rotation_degrees >= 0.0 or rotation_degrees < -180.0 + margin else -1.0
+
+func _on_oxygen_finished() -> void:
+	print("Oxygen finished!")
+	# TODO: Damage the player.

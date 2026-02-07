@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dqn04ibwpepa2"]
+
+[ext_resource type="Script" uid="uid://bco5yw021hri0" path="res://src/ui/hud/hud.gd" id="1_jobw0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrymk"]
+bg_color = Color(0.18717611, 0.18717617, 0.18717602, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyjjr"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="HUD" type="Control" unique_id=680344226 groups=["hud"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jobw0")
+oxygen_reduce_amount = 1.0
+
+[node name="OxygenBar" type="ProgressBar" parent="." unique_id=106448738]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 874.0
+offset_bottom = 69.0
+theme_override_styles/background = SubResource("StyleBoxFlat_lrymk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jyjjr")
+value = 100.0
+show_percentage = false
+
+[node name="ReduceTimer" type="Timer" parent="OxygenBar" unique_id=260366651]
+unique_name_in_owner = true
+process_callback = 0
+wait_time = 0.1
+
+[connection signal="timeout" from="OxygenBar/ReduceTimer" to="." method="_on_reduce_timer_timeout"]

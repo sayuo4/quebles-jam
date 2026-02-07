@@ -14,6 +14,11 @@ func get_main() -> Main:
 	
 	return main
 
+func get_hud() -> HUD:
+	var hud: HUD = get_tree().get_first_node_in_group("hud") as HUD
+	
+	return hud
+
 func get_player() -> Player:
 	var player: Player = get_tree().get_first_node_in_group("player") as Player
 	
