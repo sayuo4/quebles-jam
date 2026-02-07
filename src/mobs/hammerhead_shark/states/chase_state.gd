@@ -9,7 +9,7 @@ func _physics_update(delta: float) -> void:
 	shark.move(delta)
 
 func get_player_position() -> Vector2:
-	var player: Player = shark.get_player()
+	var player: Player = Global.get_player()
 	
 	if not player:
 		return Vector2.ZERO

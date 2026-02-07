@@ -42,11 +42,6 @@ func move_to_point(point: Vector2, rotate_speed: float, swim_speed: float, acc: 
 func update_flip_h() -> void:
 	sprite.flip_v = velocity.x <= 0
 
-func get_player() -> Player:
-	var player: Player = get_tree().get_first_node_in_group("player") as Player
-	
-	return player
-
 func round_values() -> void:
 	velocity = velocity.round()
 	rotation_degrees = roundf(rotation_degrees)

@@ -108,7 +108,12 @@ func arrived_at_point(point: Vector2, arriving_distance: float = patrol_arriving
 
 ## returns the player position.
 func get_player_position() -> Vector2:
-	return get_tree().get_first_node_in_group(&"player").global_position
+	var player: Player = Global.get_player()
+	
+	if not player:
+		return Vector2.ZERO
+	
+	return player.global_position
 
 
 func get_distance_to_player() -> float:
@@ -119,5 +124,7 @@ func is_player_in_vision_range() -> bool:
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body.is_in_group(&"player"):
-		body.damage()
+	var player: Player = body as Player
+	
+	if player:
+		pass # TODO: Damage the player.

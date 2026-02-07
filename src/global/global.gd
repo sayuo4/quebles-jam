@@ -14,6 +14,11 @@ func get_main() -> Main:
 	
 	return main
 
+func get_player() -> Player:
+	var player: Player = get_tree().get_first_node_in_group("player") as Player
+	
+	return player
+
 func switch_scene_to_packed(scene: PackedScene) -> void:
 	var main: Main = get_main()
 	

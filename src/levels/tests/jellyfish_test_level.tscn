@@ -1,13 +1,17 @@
 [gd_scene format=3 uid="uid://1l1pd8etymvm"]
 
 [ext_resource type="PackedScene" uid="uid://ch256pmtstlsy" path="res://src/mobs/jellyfish/jellyfish.tscn" id="1_juuq2"]
+[ext_resource type="Script" uid="uid://dxcfeyhmrpdc1" path="res://src/levels/main/game_level.gd" id="1_klhsu"]
+[ext_resource type="PackedScene" uid="uid://drihxlqlbhohq" path="res://src/player/player.tscn" id="3_nlsg1"]
 
-[node name="JellyfishTestScene" type="Node2D" unique_id=1075739844]
+[node name="JellyfishTestScene" type="Node2D" unique_id=2071101710]
+script = ExtResource("1_klhsu")
+metadata/_custom_type_script = "uid://dxcfeyhmrpdc1"
 
 [node name="Jellyfish" parent="." unique_id=230312259 instance=ExtResource("1_juuq2")]
+position = Vector2(182, 109)
+push_force = 120.0
 patrol_radius = 160.0
 chasing_arriving_distance = 2.0
-push_force = 120.0
 
-[node name="Marker2D" type="Marker2D" parent="." unique_id=485998497 groups=["player"]]
-position = Vector2(1291, -37)
+[node name="Player" parent="." unique_id=1245037256 instance=ExtResource("3_nlsg1")]
