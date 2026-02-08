@@ -36,7 +36,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jobw0")
 oxygen_reduce_amount = 1.0
-time_after_end_anim = 0.3
 
 [node name="OxygenBar" type="ProgressBar" parent="." unique_id=106448738]
 layout_mode = 0
@@ -46,7 +45,8 @@ offset_right = 874.0
 offset_bottom = 69.0
 theme_override_styles/background = SubResource("StyleBoxFlat_lrymk")
 theme_override_styles/fill = SubResource("StyleBoxFlat_jyjjr")
-value = 100.0
+max_value = 120.0
+value = 120.0
 show_percentage = false
 
 [node name="ReduceTimer" type="Timer" parent="OxygenBar" unique_id=260366651]

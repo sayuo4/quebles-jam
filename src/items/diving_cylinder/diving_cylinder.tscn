@@ -64,7 +64,7 @@ _data = {
 
 [node name="DivingCylinder" type="Area2D" unique_id=1625797382]
 script = ExtResource("1_t6302")
-oxygen_increase_amount = 25.0
+oxygen_increase_amount = 35.0
 oxygen_pause_time = 0.2
 fade_time = 0.3
 
