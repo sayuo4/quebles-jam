@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ds1xpikx6jwea" path="res://src/main/main.gd" id="1_jyjjr"]
 [ext_resource type="PackedScene" uid="uid://dqn04ibwpepa2" path="res://src/ui/hud/hud.tscn" id="3_jyjjr"]
-[ext_resource type="Shader" uid="uid://bfo1ha4cx12v6" path="res://src/player/shaders/player.gdshader" id="3_w5caj"]
+[ext_resource type="Shader" uid="uid://bfo1ha4cx12v6" path="res://src/main/shaders/water_shader.gdshader" id="3_w5caj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yotv0"]
 shader = ExtResource("3_w5caj")

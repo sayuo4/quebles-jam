@@ -17,9 +17,14 @@ extends CharacterBody2D
 @export var gravity: float
 @export var gravity_limit: float
 
+@export_group("Animation")
+@export var fade_time: float
+@export var after_fade_time: float
+
 @onready var shape: Node2D = $Shape as Node2D
 @onready var boost_timer: Timer = %BoostTimer as Timer
 @onready var state_machine: StateMachine = $StateMachine as StateMachine
+@onready var sprite: Sprite2D = %Sprite2D as Sprite2D
 
 func _ready() -> void:
 	var hud: HUD = Global.get_hud()

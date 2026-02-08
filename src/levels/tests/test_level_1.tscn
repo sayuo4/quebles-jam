@@ -36,10 +36,10 @@ position = Vector2(153, 79)
 position = Vector2(89, 20)
 
 [connection signal="body_entered" from="SpikesTilemap/Spikes" to="SpikesTilemap/Spikes" method="_on_body_entered"]
-[connection signal="body_entered" from="SpikesTilemap/@Area2D@19082" to="SpikesTilemap/@Area2D@19082" method="_on_body_entered"]
-[connection signal="body_entered" from="SpikesTilemap/@Area2D@19083" to="SpikesTilemap/@Area2D@19083" method="_on_body_entered"]
-[connection signal="body_entered" from="SpikesTilemap/@Area2D@19084" to="SpikesTilemap/@Area2D@19084" method="_on_body_entered"]
-[connection signal="body_entered" from="SpikesTilemap/@Area2D@19085" to="SpikesTilemap/@Area2D@19085" method="_on_body_entered"]
-[connection signal="body_entered" from="SpikesTilemap/@Area2D@19086" to="SpikesTilemap/@Area2D@19086" method="_on_body_entered"]
-[connection signal="body_entered" from="SpikesTilemap/@Area2D@19087" to="SpikesTilemap/@Area2D@19087" method="_on_body_entered"]
-[connection signal="body_entered" from="SpikesTilemap/@Area2D@19088" to="SpikesTilemap/@Area2D@19088" method="_on_body_entered"]
+[connection signal="body_entered" from="SpikesTilemap/@Area2D@34455" to="SpikesTilemap/@Area2D@34455" method="_on_body_entered"]
+[connection signal="body_entered" from="SpikesTilemap/@Area2D@34456" to="SpikesTilemap/@Area2D@34456" method="_on_body_entered"]
+[connection signal="body_entered" from="SpikesTilemap/@Area2D@34457" to="SpikesTilemap/@Area2D@34457" method="_on_body_entered"]
+[connection signal="body_entered" from="SpikesTilemap/@Area2D@34458" to="SpikesTilemap/@Area2D@34458" method="_on_body_entered"]
+[connection signal="body_entered" from="SpikesTilemap/@Area2D@34459" to="SpikesTilemap/@Area2D@34459" method="_on_body_entered"]
+[connection signal="body_entered" from="SpikesTilemap/@Area2D@34460" to="SpikesTilemap/@Area2D@34460" method="_on_body_entered"]
+[connection signal="body_entered" from="SpikesTilemap/@Area2D@34461" to="SpikesTilemap/@Area2D@34461" method="_on_body_entered"]

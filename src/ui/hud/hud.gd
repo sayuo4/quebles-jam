@@ -24,7 +24,7 @@ func set_oxygen(value: float) -> void:
 	if not value:
 		oxygen_finished.emit()
 	
-	var tween: Tween = get_tree().create_tween()
+	var tween: Tween = create_tween()
 	tween.tween_property(oxygen_bar, "value", value, 0.1)
 
 func pause_oxygen_for(time_sec: float) -> void:
