@@ -38,6 +38,7 @@ const IDLE_ANIM: StringName = &"idle"
 @export var fade_time: float
 @export var after_fade_time: float
 @export var swimming_speed_threshhold: float
+@export var max_sand_particles_amount: int
 
 @onready var shape: Node2D = $Shape as Node2D
 @onready var state_machine: StateMachine = $StateMachine as StateMachine
@@ -129,13 +130,14 @@ func try_bounce(delta: float) -> void:
 	if is_on_floor() or is_on_ceiling():
 		velocity.y = -dir.y * bounce_of_wall_force.y
 		collision_dir = Vector2.DOWN * dir.y
-		if SandBounceParticles.get_particles_amount(self) < 10:
+		
+		if SandBounceParticles.get_particles_amount(self) < max_sand_particles_amount:
 			SandBounceParticles.from_scene(collision_position, -dir)
 		
 	elif is_on_wall():
 		velocity.x = -dir.x * bounce_of_wall_force.x
 		collision_dir = Vector2.RIGHT * dir.x
-		if SandBounceParticles.get_particles_amount(self) < 10:
+		if SandBounceParticles.get_particles_amount(self) < max_sand_particles_amount:
 			SandBounceParticles.from_scene(collision_position, -dir)
 	
 	player_bounced.emit(collision_dir)

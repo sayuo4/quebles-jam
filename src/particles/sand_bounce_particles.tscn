@@ -29,7 +29,7 @@ scale_max = 4.0
 scale_curve = SubResource("CurveTexture_4saof")
 color_ramp = SubResource("GradientTexture1D_4saof")
 
-[node name="SandBounceParticles" type="Node2D" unique_id=2986046]
+[node name="SandBounceParticles" type="Node2D" unique_id=2986046 groups=["sand_particles"]]
 script = ExtResource("1_s117o")
 
 [node name="SandParticles" type="GPUParticles2D" parent="." unique_id=289492513]
