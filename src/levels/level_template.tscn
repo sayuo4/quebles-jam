@@ -10,31 +10,27 @@ process_mode = 1
 script = ExtResource("1_nm6nc")
 
 [node name="Background" type="Node2D" parent="." unique_id=118021761]
-z_index = -5
+z_index = -2
 
 [node name="Layer1" type="Parallax2D" parent="Background" unique_id=1617644607]
 modulate = Color(0.15686275, 0.15686275, 0.23529412, 1)
-z_index = -1
 scroll_scale = Vector2(0.1, 0)
 
 [node name="Layer2" type="Parallax2D" parent="Background" unique_id=181032568]
 modulate = Color(0.39215687, 0.39215687, 0.39215687, 1)
-z_index = -1
 scroll_scale = Vector2(0.3, 0)
 
 [node name="Layer3" type="Parallax2D" parent="Background" unique_id=2028132504]
 modulate = Color(0.54901963, 0.54901963, 0.54901963, 1)
-z_index = 1
 scroll_scale = Vector2(0.5, 0)
 
 [node name="Layer4" type="Parallax2D" parent="Background" unique_id=797417467]
 modulate = Color(0.7058824, 0.7058824, 0.7058824, 1)
-z_index = 1
 scroll_scale = Vector2(0.8, 0)
 
 [node name="BackTiles" parent="." unique_id=1355478542 instance=ExtResource("2_tphog")]
 modulate = Color(0.27022192, 0.27022192, 0.2702219, 1)
-z_index = -5
+z_index = -1
 collision_enabled = false
 
 [node name="FrontTiles" parent="." unique_id=481530268 instance=ExtResource("2_tphog")]
