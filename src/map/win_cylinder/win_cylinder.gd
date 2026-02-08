@@ -15,6 +15,11 @@ func _on_detect_player_area_body_entered(body: Node2D) -> void:
 		player.hide()
 		player.process_mode = Node.PROCESS_MODE_DISABLED
 		
+		var hud: HUD = Global.get_hud()
+		
+		if hud:
+			hud.oxygen_reduce_timer.stop()
+		
 		animation_player.play("player_enter")
 		await animation_player.animation_finished
 		await get_tree().create_timer(time_after_enter, false).timeout
