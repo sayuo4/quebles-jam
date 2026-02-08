@@ -1,6 +1,13 @@
 class_name Player
 extends CharacterBody2D
 
+
+
+
+const SWIM_ANIM: StringName = &"swim"
+const IDLE_ANIM: StringName = &"idle"
+
+
 @export var start_oxygen_time: float
 
 @export_group("Movement")
@@ -70,8 +77,23 @@ func apply_boost() -> void:
 	if velocity.length() > max_boost_speed:
 		velocity = velocity.normalized() * max_boost_speed
 
+
 func apply_animations() -> void:
-	%Anim.play(&"idle" if velocity.length() < swimming_speed_threshhold else &"swim", 0.1)
+	if velocity.length() < swimming_speed_threshhold:
+		if %Anim.current_animation == &"swim": # wait the swim anim to finish
+			wait_for_swim_anim()
+			return
+		
+		%Anim.play(&"idle")
+	else:
+		%Anim.play(&"swim", 0.1)
+
+
+func wait_for_swim_anim() -> void:
+	var animation_end: float = %Anim.current_animation_length - 0.2
+	if %Anim.current_animation_position > animation_end:
+		%Anim.play(&"idle")
+
 
 func try_boost() -> void:
 	if Input.is_action_just_pressed("boost") and boost_timer.is_stopped():
