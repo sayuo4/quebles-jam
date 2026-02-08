@@ -8,9 +8,13 @@ var current_level: Node
 @onready var sub_viewport: SubViewport = %SubViewport as SubViewport
 @onready var hud: HUD = %HUD as HUD
 
-func switch_level_to_packed(level: PackedScene) -> void:
+func switch_level_to_packed(level: PackedScene, play_end_anim: bool = false) -> void:
 	if not level:
 		return
+	
+	if play_end_anim:
+		hud.animation_player.play("end")
+		await hud.animation_player.animation_finished
 	
 	for child: Node in sub_viewport.get_children():
 		child.queue_free()
@@ -24,18 +28,15 @@ func switch_level_to_packed(level: PackedScene) -> void:
 	set_deferred("current_level", level_inst)
 	_on_level_changed.call_deferred()
 
-func switch_level_to_file(level_path: String) -> void:
+func switch_level_to_file(level_path: String, play_end_anim: bool = false) -> void:
 	var level: PackedScene = load(level_path) as PackedScene
 	
-	switch_level_to_packed(level)
+	switch_level_to_packed(level, play_end_anim)
 
-func reload_current_level() -> void:
+func reload_current_level(play_end_anim: bool = true) -> void:
 	get_tree().paused = true
 	
-	hud.animation_player.play("end")
-	await hud.animation_player.animation_finished
-	
-	switch_level_to_file(current_level.scene_file_path)
+	switch_level_to_file(current_level.scene_file_path, play_end_anim)
 
 func _on_level_changed() -> void:
 	level_changed.emit()

@@ -24,17 +24,17 @@ func get_player() -> Player:
 	
 	return player
 
-func switch_level_to_packed(level: PackedScene) -> void:
+func switch_level_to_packed(level: PackedScene, play_end_anim: bool = false) -> void:
 	var main: Main = get_main()
 	
 	if main:
-		main.switch_level_to_packed(level)
+		main.switch_level_to_packed(level, play_end_anim)
 
-func switch_level_to_file(level_path: String) -> void:
+func switch_level_to_file(level_path: String, play_end_anim: bool = false) -> void:
 	var main: Main = get_main()
 	
 	if main:
-		main.switch_level_to_file(level_path)
+		main.switch_level_to_file(level_path, play_end_anim)
 
 func get_current_level() -> Node:
 	var main: Main = get_main()
@@ -44,8 +44,8 @@ func get_current_level() -> Node:
 	
 	return null
 
-func reload_current_level() -> void:
+func reload_current_level(play_end_anim: bool = true) -> void:
 	var main: Main = get_main()
 	
 	if main:
-		main.reload_current_level()
+		main.reload_current_level(play_end_anim)
