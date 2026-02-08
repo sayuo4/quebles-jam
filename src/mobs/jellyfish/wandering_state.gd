@@ -25,7 +25,7 @@ func _physics_update(_delta: float) -> void:
 		target_node.decelerate()
 		return
 	
-	if target_node.is_player_in_vision_range():
+	if target_node.is_player_in_vision_range() && !target_node.is_in_background():
 		switch_to(&"ChasingPlayer")
 		return
 	

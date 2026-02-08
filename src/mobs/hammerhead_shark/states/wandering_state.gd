@@ -26,5 +26,5 @@ func randomize_point() -> void:
 		target_point = point.global_position
 
 func _on_detect_player_area_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if body is Player && !target_node.is_in_background():
 		switch_to("ChaseState")

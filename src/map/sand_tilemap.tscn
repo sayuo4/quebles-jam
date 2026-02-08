@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dkgdmncksd8lq"]
 
 [ext_resource type="Texture2D" uid="uid://dymrivvs76t7o" path="res://assets/map/tileset/sand_tileset.png" id="1_gxobc"]
+[ext_resource type="PackedScene" uid="uid://broyesug3yb1x" path="res://src/map/spikes/spikes.tscn" id="2_p8l76"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p8l76"]
 texture = ExtResource("1_gxobc")
@@ -247,6 +248,10 @@ texture = ExtResource("1_gxobc")
 7:9/0/terrains_peering_bit/left_side = 0
 7:9/0/terrains_peering_bit/top_side = 0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_obj8n"]
+resource_name = "Spikes"
+scenes/1/scene = ExtResource("2_p8l76")
+
 [sub_resource type="TileSet" id="TileSet_obj8n"]
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
@@ -254,6 +259,7 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Main"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_p8l76")
+sources/1 = SubResource("TileSetScenesCollectionSource_obj8n")
 
 [node name="SandTilemap" type="TileMapLayer" unique_id=1355478542]
 tile_set = SubResource("TileSet_obj8n")

@@ -26,6 +26,12 @@ var velocity: Vector2 = Vector2.ZERO
 
 @onready var sprite: Sprite2D = $Sprite2D
 
+
+
+func _ready() -> void:
+	if is_in_background():
+		disable_hitbox()
+
 func move(delta: float) -> void:
 	global_position += velocity * delta
 
@@ -45,3 +51,14 @@ func update_flip_h() -> void:
 func round_values() -> void:
 	velocity = velocity.round()
 	rotation_degrees = roundf(rotation_degrees)
+
+
+func disable_hitbox() -> void:
+	set_deferred(&"monitoring", false)
+
+## returns true if the hammerhead shark has a background flag node.
+func is_in_background() -> bool:
+	for child: Node in get_children():
+		if child is BackgroundFlag:
+			return true
+	return false

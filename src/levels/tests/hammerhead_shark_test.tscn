@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://vjirohpgsiud" path="res://src/mobs/hammerhead_shark/hammerhead_shark.tscn" id="2_pgp7k"]
 
 [node name="HammerheadSharkTest" type="Node2D" unique_id=879339283]
+process_mode = 1
 script = ExtResource("1_sqrcj")
 metadata/_custom_type_script = "uid://dxcfeyhmrpdc1"
 metadata/_edit_lock_ = true

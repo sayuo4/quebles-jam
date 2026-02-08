@@ -52,7 +52,9 @@ class_name Jellyfish
 var added_velocity: Vector2 = Vector2.ZERO
 
 
-
+func _ready() -> void:
+	if is_in_background():
+		disable_hitbox()
 
 ## called by the animaiton player to give the jelly a push in the animation.
 func push() -> void:
@@ -61,6 +63,8 @@ func push() -> void:
 	)
 
 
+func disable_hitbox() -> void:
+	%Hitbox.set_deferred(&"monitoring", true)
 
 ## accelerates towards [param towards]
 func accelerate(towards: Vector2) -> void:
@@ -123,8 +127,16 @@ func is_player_in_vision_range() -> bool:
 	return get_distance_to_player() <= vision_radius
 
 
+## returns true if the jellyfish has a background flag node.
+func is_in_background() -> bool:
+	for child: Node in get_children():
+		if child is BackgroundFlag:
+			return true
+	return false
+
+
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	var player: Player = body as Player
 	
-	if player:
+	if player && !is_in_background():
 		player.kill()

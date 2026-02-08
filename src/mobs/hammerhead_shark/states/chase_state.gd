@@ -17,5 +17,5 @@ func get_player_position() -> Vector2:
 	return player.global_position
 
 func _on_start_attack_area_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if body is Player && !shark.is_in_background():
 		switch_to("AttackState")
