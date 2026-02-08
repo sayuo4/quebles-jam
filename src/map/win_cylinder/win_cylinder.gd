@@ -18,4 +18,4 @@ func _on_detect_player_area_body_entered(body: Node2D) -> void:
 		await animation_player.animation_finished
 		await get_tree().create_timer(time_after_enter, false).timeout
 		
-		Global.switch_level_to_packed(next_level, true)
+		Global.switch_level_to_packed(next_level, true, false)
