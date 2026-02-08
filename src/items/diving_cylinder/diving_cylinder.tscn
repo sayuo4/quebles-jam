@@ -1,11 +1,28 @@
 [gd_scene format=3 uid="uid://bxrnqpbi7yote"]
 
 [ext_resource type="Script" uid="uid://iyitojl01dx8" path="res://src/items/diving_cylinder/diving_cylinder.gd" id="1_t6302"]
+[ext_resource type="Shader" uid="uid://dp6irtdf75c2s" path="res://src/shaders/fade_shader.gdshader" id="2_jtb0x"]
 [ext_resource type="Texture2D" uid="uid://bscqnrm05yp40" path="res://assets/items/diving_cylinder.png" id="2_nsui1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1a2sg"]
+shader = ExtResource("2_jtb0x")
+shader_parameter/fade = 0.0
+shader_parameter/tiling = 10.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nsui1"]
 radius = 3.0
 height = 14.142138
+
+[sub_resource type="Gradient" id="Gradient_jtb0x"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1a2sg"]
+gradient = SubResource("Gradient_jtb0x")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [sub_resource type="Animation" id="Animation_nsui1"]
 length = 0.001
@@ -49,14 +66,20 @@ _data = {
 script = ExtResource("1_t6302")
 oxygen_increase_amount = 25.0
 oxygen_pause_time = 0.2
+fade_time = 0.3
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1160553062]
+material = SubResource("ShaderMaterial_1a2sg")
 texture = ExtResource("2_nsui1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=610934436]
 position = Vector2(0, 1)
 rotation = 0.7853982
 shape = SubResource("CapsuleShape2D_nsui1")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1061225613]
+energy = 0.6
+texture = SubResource("GradientTexture2D_1a2sg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=877034671]
 libraries/ = SubResource("AnimationLibrary_1a2sg")
