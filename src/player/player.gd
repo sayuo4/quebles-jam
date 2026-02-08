@@ -1,12 +1,10 @@
 class_name Player
 extends CharacterBody2D
 
-
-
+signal player_bounced(dir: Vector2)
 
 const SWIM_ANIM: StringName = &"swim"
 const IDLE_ANIM: StringName = &"idle"
-
 
 @export var start_oxygen_time: float
 
@@ -26,6 +24,10 @@ const IDLE_ANIM: StringName = &"idle"
 @export var gravity: float
 @export var gravity_limit: float
 
+@export_subgroup("Bounce")
+@export var bounce_of_wall_force: Vector2
+@export var after_bounce_acc: float
+
 @export_group("Dash")
 @export var dash_speed: float
 @export var dash_distance: float
@@ -43,6 +45,7 @@ const IDLE_ANIM: StringName = &"idle"
 
 @onready var boost_timer: Timer = %BoostTimer as Timer
 @onready var dash_timer: Timer = %DashTimer as Timer
+@onready var bounce_timer: Timer = %BounceTimer as Timer
 
 func _ready() -> void:
 	var hud: HUD = Global.get_hud()
@@ -62,7 +65,11 @@ func apply_movement() -> void:
 	var target_speed: float = remap(clamped_rotation, -90.0, 90.0, -max_rotation_speed, max_rotation_speed)
 	
 	var is_acc: bool = signf(target_speed - velocity.x) == signf(target_speed)
-	var step: float = rotation_speed_acc if is_acc else rotation_speed_dec
+	
+	var step: float = (
+			after_bounce_acc if not bounce_timer.is_stopped()
+			else rotation_speed_acc if is_acc else rotation_speed_dec
+	)
 	
 	velocity.x = move_toward(velocity.x, target_speed, step)
 
@@ -108,6 +115,25 @@ func try_dash() -> void:
 	
 	if Input.is_action_just_pressed("dash") and dash_timer.is_stopped():
 		state_machine.activate_state_by_name.call_deferred("DashState")
+
+func try_bounce(delta: float) -> void:
+	var speed: Vector2 = get_position_delta() / delta
+	
+	if not speed or not get_slide_collision_count():
+		return
+	
+	var dir: Vector2 = speed.sign()
+	var collision_dir: Vector2 = Vector2.ZERO
+	
+	if is_on_floor() or is_on_ceiling():
+		velocity.y = -dir.y * bounce_of_wall_force.y
+		collision_dir = Vector2.DOWN * dir.y
+	elif is_on_wall():
+		velocity.x = -dir.x * bounce_of_wall_force.x
+		collision_dir = Vector2.RIGHT * dir.x
+	
+	player_bounced.emit(collision_dir)
+	bounce_timer.start()
 
 func round_values() -> void:
 	velocity = velocity.round()

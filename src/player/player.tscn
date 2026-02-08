@@ -85,13 +85,15 @@ boost_speed = 50.0
 max_boost_speed = 100.0
 gravity = 1.0
 gravity_limit = 25.0
+bounce_of_wall_force = Vector2(25, 30)
+after_bounce_acc = 2.0
 dash_speed = 200.0
 dash_distance = 30.0
 dash_oxygen_reduce_amount = 15.0
 after_dash_velocity_ratio = 0.3
 fade_time = 0.3
 after_fade_time = 0.3
-swimming_speed_threshhold = 30.0
+swimming_speed_threshhold = 45.0
 metadata/_edit_group_ = true
 
 [node name="Shape" type="Node2D" parent="." unique_id=380790134]
@@ -143,6 +145,12 @@ wait_time = 0.2
 one_shot = true
 
 [node name="DashTimer" type="Timer" parent="Timers" unique_id=1236706491]
+unique_name_in_owner = true
+process_callback = 0
+wait_time = 0.2
+one_shot = true
+
+[node name="BounceTimer" type="Timer" parent="Timers" unique_id=92396110]
 unique_name_in_owner = true
 process_callback = 0
 wait_time = 0.2
