@@ -4,6 +4,7 @@ extends Control
 signal oxygen_finished
 
 @export var oxygen_reduce_amount: float
+@export var time_after_end_anim: float # Waited once after and once before the transitions
 
 var oxygen: float: set = set_oxygen
 

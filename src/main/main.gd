@@ -15,6 +15,7 @@ func switch_level_to_packed(level: PackedScene, play_end_anim: bool = false) -> 
 	if play_end_anim:
 		hud.animation_player.play("end")
 		await hud.animation_player.animation_finished
+		await get_tree().create_timer(hud.time_after_end_anim, false).timeout
 	
 	for child: Node in sub_viewport.get_children():
 		child.queue_free()
