@@ -20,9 +20,6 @@ func _on_body_entered(body: Node2D) -> void:
 			return
 		
 		hud.oxygen += oxygen_increase_amount
-		
-		hud.oxygen_reduce_timer.stop()
-		await get_tree().create_timer(oxygen_pause_time, false, true).timeout
-		hud.oxygen_reduce_timer.start()
+		hud.pause_oxygen_for(oxygen_pause_time)
 		
 		queue_free()
