@@ -66,6 +66,7 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="RestartButton" type="Button" parent="CenterContainer/PausePanel/VBoxContainer/RestartMargin" unique_id=263002202]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 112)
 layout_mode = 2
 theme_override_constants/outline_size = 16
@@ -101,6 +102,7 @@ theme_override_constants/margin_left = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="FullScreenText" type="RichTextLabel" parent="MarginContainer" unique_id=1005895113]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/normal_font_size = 32

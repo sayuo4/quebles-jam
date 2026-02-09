@@ -103,6 +103,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_87wup")
 time_after_end_anim = 0.3
 
@@ -161,7 +162,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/outline_size = 24
 theme_override_font_sizes/normal_font_size = 32
-text = "Use ← → keys to rotate."
+text = "Use arrow keys to rotate."
 fit_content = true
 
 [node name="SwimTextMargin" type="MarginContainer" parent="Menu/ControlsContainer" unique_id=322898788]

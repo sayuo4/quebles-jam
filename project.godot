@@ -12,7 +12,7 @@ config_version=5
 
 config/name="quebles-jam"
 config/description=" A game made for Queble's Jam."
-run/main_scene="uid://dmvpaxhbl5g40"
+run/main_scene="uid://reo01e37m7mv"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 

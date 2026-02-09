@@ -4,7 +4,6 @@ extends Area2D
 signal reached_point
 
 @export var wandering_points: Array[Marker2D]
-@export var switch_values_delta: float
 
 @export_group("Movement")
 @export_subgroup("Wandering")

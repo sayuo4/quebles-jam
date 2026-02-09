@@ -12,7 +12,7 @@ var started: bool: set = set_started
 @onready var transition_rect: ColorRect = $TransitionRect as ColorRect
 
 func _ready() -> void:
-	transition_rect.visible = true
+	transition_rect.visible = false
 	started = false
 
 func _input(event: InputEvent) -> void:
