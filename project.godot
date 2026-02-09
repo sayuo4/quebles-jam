@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="quebles-jam"
-config/description=" A game made for Queble's Jam."
+config/name="ticking-ocean"
+config/description="Play as a diver and avoid obstacles before your oxygen runs out!"
 run/main_scene="uid://reo01e37m7mv"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
