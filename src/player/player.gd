@@ -49,17 +49,11 @@ const IDLE_ANIM: StringName = &"idle"
 @onready var bounce_timer: Timer = %BounceTimer as Timer
 
 func _ready() -> void:
-	var hud: HUD = Global.get_hud()
-	
-	if hud:
-		await get_tree().create_timer(start_oxygen_time).timeout
-		hud.oxygen_reduce_timer.start()
-		hud.oxygen_finished.connect(_on_oxygen_finished)
-	
-	var pause_menu: PauseMenu = Global.get_pause_menu()
-	
-	if pause_menu:
-		pause_menu.enabled = true
+	Global.enable_pause_menu()
+	await get_tree().create_timer(start_oxygen_time).timeout
+	Global.start_oxygen_timer(_on_oxygen_finished)
+
+
 
 func get_input_dir() -> float:
 	return Input.get_axis("left", "right")

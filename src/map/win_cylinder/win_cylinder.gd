@@ -1,9 +1,9 @@
 class_name WinCylinder
 extends StaticBody2D
 
-@export var next_level: PackedScene
+@export var switch_to_scene: PackedScene
+@export var is_level: bool = true
 @export var time_after_enter: float
-@export var is_thanks_level: bool
 
 @onready var player_shape: Node2D = $PlayerShape as Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer as AnimationPlayer
@@ -25,11 +25,11 @@ func _on_detect_player_area_body_entered(body: Node2D) -> void:
 		await animation_player.animation_finished
 		await get_tree().create_timer(time_after_enter, false).timeout
 		
-		if is_thanks_level:
-			get_tree().change_scene_to_file("res://src/levels/main_levels/thanks_level.tscn")
+		if not switch_to_scene:
+			Global.reload_current_level()
 			return
 		
-		if next_level:
-			Global.switch_level_to_packed(next_level, true, false)
+		if is_level:
+			Global.switch_level_to_packed(switch_to_scene, true, false)
 		else:
-			Global.reload_current_level()
+			Global.switch_scene_to_packed(switch_to_scene, true, true)

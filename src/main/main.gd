@@ -10,8 +10,6 @@ var current_level: Node
 @onready var pause_menu: PauseMenu = %PauseMenu as PauseMenu
 @onready var start_menu: StartMenu = %StartMenu as StartMenu
 
-var set_thanks: bool = false
-
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("fullscreen") and not OS.get_name() == "Web":
 		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
@@ -19,22 +17,13 @@ func _input(event: InputEvent) -> void:
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
-func set_thanks_level() -> void:
-	$GameLayer.hide()
-	$WaterLayer.hide()
-	$HUDLayer.hide()
-	$PauseMenuLayer.hide()
-	$StartMenuLayer.hide()
-	$ThanksLayer.show()
-
 func switch_level_to_packed(level: PackedScene, play_end_anim: bool = false, enable_start_menu: bool = true) -> void:
 	if not level:
 		return
 	
 	if play_end_anim:
-		start_menu.animation_player.play("end")
-		await start_menu.animation_player.animation_finished
-		await get_tree().create_timer(start_menu.time_after_end_anim).timeout
+		Global.play_end_transition()
+		await Global.end_transition_finished
 	
 	start_menu.started = not enable_start_menu
 	
@@ -45,7 +34,6 @@ func switch_level_to_packed(level: PackedScene, play_end_anim: bool = false, ena
 	
 	hud.reset()
 	hud.oxygen_reduce_timer.stop()
-	pause_menu.enabled = false
 	sub_viewport.add_child.call_deferred(level_inst)
 	level_inst.set_deferred("owner", self)
 	set_deferred("current_level", level_inst)
@@ -65,12 +53,8 @@ func _on_level_changed() -> void:
 	level_changed.emit()
 	get_tree().paused = true
 	
-	if set_thanks:
-		get_tree().paused = false
-		return
-	
-	start_menu.animation_player.play("start")
-	await start_menu.animation_player.animation_finished
+	Global.play_start_transition()
+	await Global.start_transition_finished
 	
 	if start_menu.started:
 		get_tree().paused = false
