@@ -50,6 +50,17 @@ func get_pause_menu() -> PauseMenu:
 	
 	return pause_menu
 
+func get_player_camera() -> PlayerCamera:
+	var camera: PlayerCamera = get_tree().get_first_node_in_group("player_camera") as PlayerCamera
+	
+	return camera
+
+func apply_camera_shake(strength: float, fade: float) -> void:
+	var camera: PlayerCamera = get_player_camera()
+	
+	if camera:
+		camera.apply_shake(strength, fade)
+
 func enable_pause_menu() -> void:
 	var pause_menu: PauseMenu = get_pause_menu()
 	

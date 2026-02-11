@@ -38,6 +38,13 @@ const IDLE_ANIM: StringName = &"idle"
 @export var swimming_speed_threshhold: float
 @export var max_sand_particles_amount: int
 
+@export_group("Camera")
+@export var death_camera_shake_strength: float
+@export var death_camera_shake_fade: float
+
+@export var dash_camera_shake_strength: float
+@export var dash_camera_shake_fade: float
+
 @onready var shape: Node2D = $Shape as Node2D
 @onready var state_machine: StateMachine = $StateMachine as StateMachine
 @onready var sprite: Sprite2D = %Sprite2D as Sprite2D

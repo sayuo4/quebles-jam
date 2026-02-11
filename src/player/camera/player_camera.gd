@@ -1,0 +1,17 @@
+class_name PlayerCamera
+extends Camera2D
+
+var _shake_fade: float = 0.0
+var _shake_strength: float = 0.0
+
+func apply_shake(strength: float, fade: float) -> void:
+	_shake_strength = strength
+	_shake_fade = fade
+
+func _process(delta: float) -> void:
+	_shake_strength = lerpf(_shake_strength, 0.0, _shake_fade * delta)
+	
+	offset = Vector2(
+			randf_range(-_shake_strength, _shake_strength),
+			randf_range(-_shake_strength, _shake_strength)
+	)

@@ -41,6 +41,7 @@ hud=""
 sand_particles=""
 pause_menu=""
 start_menu=""
+player_camera=""
 
 [input]
 

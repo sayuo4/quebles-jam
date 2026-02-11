@@ -8,6 +8,7 @@ func _state_machine_ready() -> void:
 	fade = 0.0
 
 func _enter(_previous_state: State) -> void:
+	Global.apply_camera_shake(player.death_camera_shake_strength, player.death_camera_shake_fade)
 	var pause_menu: PauseMenu = Global.get_pause_menu()
 	
 	if pause_menu:

@@ -96,6 +96,10 @@ fade_time = 0.3
 after_fade_time = 0.3
 swimming_speed_threshhold = 45.0
 max_sand_particles_amount = 5
+death_camera_shake_strength = 1.0
+death_camera_shake_fade = 6.0
+dash_camera_shake_strength = 1.0
+dash_camera_shake_fade = 5.0
 metadata/_edit_group_ = true
 
 [node name="Shape" type="Node2D" parent="." unique_id=380790134]
