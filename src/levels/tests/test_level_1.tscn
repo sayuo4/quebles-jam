@@ -32,4 +32,4 @@ position = Vector2(64, 112)
 rotation = 1.5707964
 
 [node name="Pufferfish" parent="." unique_id=412398646 instance=ExtResource("6_f3xv5")]
-position = Vector2(32, 43)
+position = Vector2(129, 43)
