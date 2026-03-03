@@ -1,3 +1,4 @@
+class_name SandTileMap
 extends TileMapLayer
 
 const SAND_TILESET_SOURCE_ID: int = 0

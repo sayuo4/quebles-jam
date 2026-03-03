@@ -130,22 +130,32 @@ func try_bounce() -> void:
 		return
 	
 	var collision: KinematicCollision2D = get_last_slide_collision()
-	var collision_point: Vector2 = collision.get_position()
-	
-	var bounce_dir: Vector2 = Vector2(
-			signf(get_wall_normal().x) if is_on_wall() else 0.0,
-			-1.0 if is_on_floor() else 1.0 if is_on_ceiling() else 0.0
-	)
+	var bounce_dir: Vector2 = collision.get_normal().round()
 	
 	if bounce_dir.y:
 		velocity.y = bounce_dir.y * bounce_of_wall_force.y
 	elif bounce_dir.x:
 		velocity.x = bounce_dir.x * bounce_of_wall_force.x
 	
-	if SandBounceParticles.get_particles_amount(self) < max_sand_particles_amount:
-		SandBounceParticles.from_scene(collision_point, bounce_dir)
-	
 	bounce_timer.start()
+	spawn_sand_particles(collision, bounce_dir)
+
+func spawn_sand_particles(collision: KinematicCollision2D, dir: Vector2) -> void:
+	if SandBounceParticles.get_particles_amount(self) >= max_sand_particles_amount:
+		return
+	
+	var tilemap: SandTileMap = collision.get_collider()
+	
+	if not tilemap:
+		return
+	
+	var collision_point: Vector2 = collision.get_position()
+	var raw_intersection_point: Vector2 = collision_point - collision.get_normal() * collision.get_depth()
+	
+	var cell: Vector2i = tilemap.local_to_map(tilemap.to_local(raw_intersection_point))
+	
+	if tilemap.get_cell_source_id(cell) == tilemap.SAND_TILESET_SOURCE_ID:
+		SandBounceParticles.from_scene(collision_point, dir)
 
 func round_values() -> void:
 	velocity = velocity.round()

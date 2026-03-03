@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cw4ogs4t3qel4" path="res://src/map/spikes/corner_spikes.tscn" id="4_wugqd"]
 [ext_resource type="Script" uid="uid://bos7w1nms8xw4" path="res://src/map/sand_tilemap/sand_tilemap.gd" id="5_qrjkn"]
 [ext_resource type="Texture2D" uid="uid://booobyewy6m0w" path="res://assets/map/tileset/filled_corner_sand_tileset.png" id="5_vbfqf"]
+[ext_resource type="Texture2D" uid="uid://db272l8lylaul" path="res://assets/map/tileset/wooden_tiles.png" id="5_wugqd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p8l76"]
 texture = ExtResource("1_1h5kr")
@@ -350,6 +351,30 @@ texture = ExtResource("5_vbfqf")
 7:9/0 = 0
 7:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, -8, -8, 8, 8, 8)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_18rvf"]
+texture = ExtResource("5_wugqd")
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, -8, -8, -5, 8, -5)
+1:0/0/physics_layer_0/polygon_0/one_way = true
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, -5, 7, -5, 7, -8)
+2:0/0/physics_layer_0/polygon_0/one_way = true
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, -5, 7, -5, 7, -8)
+0:1/0/physics_layer_0/polygon_0/one_way = true
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, -5, -7, -5, -7, -8)
+2:1/0/physics_layer_0/polygon_0/one_way = true
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -5, -8, -8, 8, -8, 8, -5)
+0:2/0/physics_layer_0/polygon_0/one_way = true
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8.5, -8, -5, 8, -5, 8, -8)
+1:2/0/physics_layer_0/polygon_0/one_way = true
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, -5, -7, -5, -7, -8)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+
 [sub_resource type="TileSet" id="TileSet_obj8n"]
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
@@ -359,7 +384,11 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_p8l76")
 sources/1 = SubResource("TileSetScenesCollectionSource_obj8n")
 sources/2 = SubResource("TileSetAtlasSource_wugqd")
+sources/3 = SubResource("TileSetAtlasSource_18rvf")
 
 [node name="SandTilemap" type="TileMapLayer" unique_id=1355478542]
+tile_map_data = PackedByteArray(0, 0, 20, 0, 2, 0, 1, 0, 0, 0, 0, 0, 1, 0, 20, 0, 3, 0, 3, 0, 1, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_obj8n")
 script = ExtResource("5_qrjkn")
+
+[connection signal="body_entered" from="Spikes" to="Spikes" method="_on_body_entered"]
